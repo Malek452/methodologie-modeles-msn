@@ -1,92 +1,64 @@
-# Atelier Presentations
+# MSN · Linear and exponential models
 
-A reusable presentation starter extracted from [Atelier Fonctions](https://github.com/Malek452/atelier-fonctions). It keeps the dark green board, readable mathematics, and deliberate animations from that project. Students move through an explanation; there are no accounts, quizzes, answer fields, or grading services.
+A standalone French teaching presentation for **TD1, exercises 2 and 5**, based on the supplied `TD1-MSN-corrige-complet.tex`. It teaches how to choose a model, identify its parameters, build formulas and justify each calculation.
 
-[Live MSN presentation](https://malek452.github.io/atelier-presentations/) · [Version française](README.fr.md) · [Authoring guide](docs/AUTHORING.md) · [Animation recipes](docs/ANIMATIONS.md) · [Instructions for coding assistants](AGENTS.md)
+[Live presentation](https://malek452.github.io/methodologie-modeles-msn/) · [Printable handout](https://malek452.github.io/methodologie-modeles-msn/handout/) · [Version française](README.fr.md)
 
-![The presentation board showing a French sign table and its explanation](docs/preview.jpg)
+## Course
 
-## Current presentation: linear and exponential models
+- [General method](https://malek452.github.io/methodologie-modeles-msn/#activity/choisir-modele): additive versus multiplicative change, units, assumptions, parameters and threshold equations.
+- [Exercise 2](https://malek452.github.io/methodologie-modeles-msn/#activity/ex2-reperes): cumulative production with an unknown constant rate, a pause and a piecewise affine model.
+- [Exercise 5](https://malek452.github.io/methodologie-modeles-msn/#activity/ex5-modele): continuous exponential growth, populations after 15 h and 20 h, and the time needed to reach 50,000 bacteria.
 
-The active French deck teaches a reusable modelling method and exercises 2 and 5 from the supplied `TD1-MSN-corrige-complet.tex`. It covers piecewise affine production with a pause, continuous exponential growth, evaluation, logarithmic threshold solving, explicit assumptions and accessible graphs. The original examples remain reusable fixtures in `examples/`.
+Each step pairs a formula or graph with its justification. The lesson explicitly distinguishes supplied data from modelling assumptions. The handout includes the complete reasoning and graphs.
 
-[Method](https://malek452.github.io/atelier-presentations/#activity/choisir-modele) · [Exercise 2](https://malek452.github.io/atelier-presentations/#activity/ex2-reperes) · [Exercise 5](https://malek452.github.io/atelier-presentations/#activity/ex5-modele) · [Printable handout](https://malek452.github.io/atelier-presentations/handout/)
+## Independent project
 
-## Start your own presentation
+This repository was created from the [Atelier Présentations template](https://github.com/Malek452/atelier-presentations). The template is the source of the presentation engine, not this course's deployment destination. Make changes and publish this course only from `Malek452/methodologie-modeles-msn`; keep the upstream template independent.
 
-1. Choose **Use this template → Create a new repository** on GitHub, or clone/download this repository.
-2. Install **Node.js 24 LTS** (the version is also in `.nvmrc`).
-3. From the project directory:
+The inherited recipes in `examples/` remain available as authoring references and independent regression fixtures. They are not part of the active course.
+
+## Run locally
+
+Install Node.js 24, then work in this repository:
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite. The first launch compiles the equations and animation player. Saving lesson files recompiles that player; the development server restarts with its new fingerprinted URL. Reload the page after that restart. Changes to React components and CSS use normal Vite hot reload.
+The first launch compiles the equations and animation player. After editing lesson content, wait for recompilation and reload the page. The production output is `dist/`.
 
-```sh
-npm run new:lesson -- my-lesson "My lesson"
-```
-
-This creates and registers `src/content/my-lesson.ts`, with a small working equation example to replace. It does not generate the subject matter of your lesson. Its permanent link is `#activity/my-lesson`.
-
-## What to customize
+## Edit the presentation
 
 | File | Purpose |
 | --- | --- |
-| `presentation.config.ts` | Browser title, description, French/English controls, chapter/activity labels, preference storage key |
-| `src/theme.ts` | Board and mathematical role colors, shared by the interface and animation engine |
-| `src/content/index.ts` | Presentation order and registered lesson modules |
-| `src/content/*.ts` | Statements, reasoning, justifications, highlights and animation cues |
-| `examples/*.ts` | Bundled working recipes; keep them as references when replacing the active deck |
-| `src/types.ts` | Typed content contract |
-| `AGENTS.md` | Editing instructions for LLMs and coding agents |
+| `src/content/methodologie-modeles.ts` | General method |
+| `src/content/production-lineaire.ts` | Exercise 2 |
+| `src/content/croissance-exponentielle.ts` | Exercise 5 |
+| `src/content/index.ts` | Registered sections and their order |
+| `presentation.config.ts` | Title, description and interface language |
+| `src/theme.ts` | Shared presentation palette |
 
-The example content is in French. Setting `locale: 'en'` changes controls and accessibility labels; it does **not** translate authored lessons or the French authoring helpers. Set `sectionLabel` and `activityLabel` too. Give each published presentation its own `storageKey` if it should have independent reduced-motion preferences.
-
-## Included examples
-
-- Powers: common bases, adding/subtracting exponents, and a power of a power.
-- Algebra: distributing one factor at a time, computing products, collecting like terms, and finding both roots of a quadratic.
-- A French sign table: ordered critical points, zero versus forbidden value, then selected intervals.
-- A unit-circle explanation with the radius and coordinate projection.
-- A text-only explanation that uses the same board and navigation.
-
-These are authoring examples, not the complete original worksheet. Replace them for a new course. The template supports mathematics and short text explanations; arbitrary diagrams or other subject-specific animations require authored code.
+Read [AGENTS.md](AGENTS.md), the [authoring guide](docs/AUTHORING.md) and [animation recipes](docs/ANIMATIONS.md) before changing the content. Keep activity IDs stable so existing links continue to work.
 
 ## Reader controls
 
-Use the two selectors to change chapter and activity. Move between steps using the buttons, **← / →**, or a horizontal swipe on the main board. The step selector jumps directly to a settled state. Play, pause, replay, speed controls, reduced motion, and browser fullscreen are included. **Space** toggles automatic playback when focus is outside a control. Overflowing tables keep their own horizontal scrolling.
+Choose a chapter and activity, then use the buttons, **← / →** or a horizontal swipe to move through the explanation. The step selector allows direct jumps. Playback, pause, replay, speed, reduced motion and fullscreen controls are included. **Space** toggles playback when focus is outside a control.
 
-Backward navigation and direct jumps display the finished step; they do not play a mathematically misleading reverse transformation. Replay shows the authored forward transition. The only persistent data is a local reduced-motion preference. Activity links are shareable, but there is no student progress tracking.
+Backward navigation shows the completed step. Replay restores the authored forward transition. No accounts, answers or student progress are collected; only the reduced-motion preference is stored locally.
 
 ## Validate and publish
 
 ```sh
-npm test          # content, mathematics, navigation and animation regressions
-npm run build    # typecheck, glyph compilation, Motion Canvas, handout and React
-npm run preview  # serve the production build locally
-# or run both test and build:
-npm run validate
+npm run validate  # tests, typecheck and production build
+npm run preview   # inspect dist/ locally
 ```
 
-Deploy **`dist/`** to a static host. [Deployment instructions](docs/DEPLOYMENT.md) cover GitHub Pages and Netlify. No backend, API key, paid correction service or runtime font CDN is required. The build includes a printable, searchable handout at `handout/` and `handout/handout.md`.
+The **Deploy to GitHub Pages** workflow validates and publishes pushes to `main` in this repository. It also supports manual dispatch. Configure **Settings → Pages → GitHub Actions** for this independent repository. Deployment publishes only `dist/`, including the handout and animation assets, to the presentation's own URL.
 
-GitHub CI runs tests and the production build on pushes and pull requests. The **Deploy to GitHub Pages** workflow validates and publishes each push to `main`; it also supports manual dispatch. Pages is already enabled for this repository.
+The tests check authored formulas, production joins, population values, logarithmic equations, navigation and rendering. They supplement mathematical and visual review. See [deployment](docs/DEPLOYMENT.md), [architecture](docs/ARCHITECTURE.md) and [maintenance](docs/MAINTENANCE.md) for technical details.
 
-## Working with an LLM
+## Attribution and license
 
-Open this repository in your coding assistant and ask it to read `AGENTS.md`, then use one of the [ready-to-copy prompts](docs/LLM-PROMPTS.md). Give it your actual source material and intended audience. Request a mathematical review and a real test/build run before accepting a generated deck.
-
-The build checks types, TeX, exact animation references and sign-table structure. It cannot prove a new lesson correct or judge every explanation. The sample mathematics has additional regression tests. Visual and mathematical review remain part of authoring.
-
-## Framework and maintenance
-
-React + TypeScript manage navigation. Motion Canvas 3.17.2 animates precompiled MathJax SVG glyphs. KaTeX renders accessible/static formulas and the handout. Most edits belong in content files; the animation engine is shared.
-
-See [architecture and limitations](docs/ARCHITECTURE.md) and the [dependency maintenance note](docs/MAINTENANCE.md), including the inherited Motion Canvas/Vite compatibility constraint. Development servers bind to localhost by default and are not the deployment artifact.
-
-## License
-
-MIT. You can reuse and adapt this starter, including commercially, while retaining its license notice. See [LICENSE](LICENSE) and [third-party notices](THIRD-PARTY-NOTICES.md). When importing external teaching material, obtain any permissions required for that material separately.
+The presentation engine comes from [Atelier Présentations](https://github.com/Malek452/atelier-presentations), under the MIT license. Keep [LICENSE](LICENSE) and [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md). The teaching content is adapted from the supplied TD1 correction; rights to separately added materials remain their respective owners'.

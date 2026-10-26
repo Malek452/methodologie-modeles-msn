@@ -1,6 +1,8 @@
 # Instructions for coding assistants
 
-This is a reusable **presentation** repository. Read `README.md`, `docs/AUTHORING.md` and `docs/ANIMATIONS.md` before authoring content. Follow the user's language and audience; bundled examples and authoring helpers are French.
+This is the standalone `Malek452/methodologie-modeles-msn` presentation. Edit and deploy this repository only for this course. Do not modify or deploy the upstream `Malek452/atelier-presentations` template when working on this presentation.
+
+This is a standalone **presentation** repository built from a reusable engine. Read `README.md`, `docs/AUTHORING.md` and `docs/ANIMATIONS.md` before authoring content. Follow the user's language and audience; bundled examples and authoring helpers are French.
 
 ## Preserve the experience
 
